@@ -6,13 +6,18 @@ on:
     branches:
       - main
   schedule:
-    - cron: '50 0 * * *'
+    - cron: '50 4 * * *'
 
 jobs:
   auto_renew:
     runs-on: ubuntu-latest
     environment: renew
     steps:
+      - name: Use the secret
+        run: |
+          echo "The username is ${{ secrets.USERNAME }}"
+          echo "The password is ${{ secrets.PASSWORD }}"
+        
       - name: 'Checkout codes'
         uses: actions/checkout@v2
 
